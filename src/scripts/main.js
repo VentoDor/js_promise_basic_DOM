@@ -19,14 +19,16 @@ logo.addEventListener('click', (e) => {
   const click = e.target;
 
   // eslint-disable-next-line no-new
-  new Promise((resolve, reject) => {
+  const promise1 = new Promise((resolve, reject) => {
     if (!click) {
       // eslint-disable-next-line prefer-promise-reject-errors
       reject(new Error('Promise was rejected!'));
     } else {
       resolve('Promise was resolved!');
     }
-  })
+  });
+
+  promise1
     .then((value) => {
       ShowMessage(value);
     })
@@ -35,11 +37,13 @@ logo.addEventListener('click', (e) => {
     });
 });
 
-new Promise((resolve, reject) => {
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
     reject(new Error('Promise was rejected!'));
   }, 3000);
-})
+});
+
+promise2
   .then((value) => {
     ShowMessage(`${value}`);
   })
