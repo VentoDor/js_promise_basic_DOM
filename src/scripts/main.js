@@ -15,27 +15,19 @@ function ShowMessage(message, isError = false) {
   document.body.appendChild(el);
 }
 
-logo.addEventListener('click', (e) => {
-  const click = e.target;
-
-  // eslint-disable-next-line no-new
-  const promise1 = new Promise((resolve, reject) => {
-    if (!click) {
-      // eslint-disable-next-line prefer-promise-reject-errors
-      reject(new Error('Promise was rejected!'));
-    } else {
-      resolve('Promise was resolved!');
-    }
+const promise1 = new Promise((resolve) => {
+  logo.addEventListener('click', () => {
+    resolve('Promise was resolved!');
   });
-
-  promise1
-    .then((value) => {
-      ShowMessage(value);
-    })
-    .catch((err) => {
-      ShowMessage(err.message, true);
-    });
 });
+
+promise1
+  .then((value) => {
+    ShowMessage(value);
+  })
+  .catch((err) => {
+    ShowMessage(err.message, true);
+  });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
